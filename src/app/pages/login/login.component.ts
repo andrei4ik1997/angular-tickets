@@ -1,4 +1,10 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
+import {MatButtonModule} from '@angular/material/button';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
 	selector: 'login',
@@ -6,6 +12,24 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 	styleUrl: './login.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	standalone: true,
-	imports: [],
+	imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule],
 })
-export class LoginComponent {}
+export class LoginComponent {
+	private readonly fb = inject(FormBuilder);
+	private readonly authService = inject(AuthService);
+
+	protected readonly form = this.fb.nonNullable.group({
+		email: ['', Validators.required],
+		password: ['', Validators.required],
+	});
+
+	protected hide = true;
+
+	protected errorMessage: string | null = null;
+
+	protected onSubmit(): void {
+		this.errorMessage = null;
+
+		this.authService.login(this.form.controls.email.value, this.form.controls.password.value);
+	}
+}

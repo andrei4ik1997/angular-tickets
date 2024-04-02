@@ -1,5 +1,5 @@
 import {Routes} from '@angular/router';
-import {authorizationGuard, loginGuard} from './guards';
+import {authorizationGuard} from './guards';
 import {PageRoute} from './shared';
 
 export const APP_ROUTES: Routes = [
@@ -27,7 +27,7 @@ export const APP_ROUTES: Routes = [
 	},
 	{
 		path: PageRoute.Login,
-		canActivateChild: [loginGuard],
+		canActivateChild: [],
 		loadChildren: () => import('./pages/login/login.routes'),
 		title: 'Login',
 	},
