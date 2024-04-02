@@ -1,6 +1,6 @@
 {
 	"name": "angular-tickets",
-	"version": "0.0.0",
+	"version": "1.0.0",
 	"scripts": {
 		"ng": "ng",
 		"start": "ng serve",
@@ -11,8 +11,14 @@
 		"lint-fix": "ng lint angular-tickets --fix",
 		"stylelint": "stylelint '**/*.{css,scss}'",
 		"stylelint-fix": "stylelint '**/*.{css,scss}' --fix",
-		"find-circular-dependencies": "npx madge -c --extensions ts ./"
+		"find-circular-dependencies": "npx madge -c --extensions ts ./",
+		"deploy": "ng build --base-href https://andrei4ik1997.github.io/angular-tickets/ && ngh --dir dist/angular-tickets/browser"
 	},
+	"engines": {
+		"node": ">=18.18.0",
+		"npm": ">=9.8.1"
+	},
+	"author": "Andrei Shinkarev",
 	"private": true,
 	"dependencies": {
 		"@angular/animations": "17.3.2",
@@ -28,7 +34,7 @@
 		"zone.js": "0.14.4"
 	},
 	"devDependencies": {
-		"@angular-devkit/architect": "^0.1703.2",
+		"@angular-devkit/architect": "0.1703.2",
 		"@angular-devkit/build-angular": "17.3.2",
 		"@angular-eslint/builder": "17.3.0",
 		"@angular-eslint/eslint-plugin": "17.3.0",
@@ -46,7 +52,8 @@
 		"eslint-plugin-prettier": "5.1.3",
 		"eslint-plugin-rxjs": "5.0.3",
 		"eslint-plugin-typescript-sort-keys": "3.2.0",
-		"husky": "^9.0.11",
+		"husky": "9.0.11",
+		"jsonc-eslint-parser": "2.4.0",
 		"lint-staged": "15.2.2",
 		"postcss-scss": "4.0.9",
 		"prettier": "3.2.5",
