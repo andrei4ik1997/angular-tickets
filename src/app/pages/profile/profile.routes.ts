@@ -4,6 +4,9 @@ const profileRoutes: Routes = [
 	{
 		path: ':userID',
 		loadComponent: () => import('./profile.container'),
+		data: {
+			breadcrumb: (userID: string): string => `User ${userID}`,
+		},
 	},
 ];
 

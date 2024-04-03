@@ -1,0 +1,12 @@
+<xng-breadcrumb [separator]="iconTemplate" [preserveFragment]="false" [preserveQueryParams]="false">
+	<ng-container *xngBreadcrumbItem="let breadcrumb; let info = info">
+		@if (info?.icon) {
+			<mat-icon>{{ info.icon }}</mat-icon>
+		}
+		{{ breadcrumb }}
+	</ng-container>
+
+	<ng-template #iconTemplate>
+		<mat-icon>arrow_right</mat-icon>
+	</ng-template>
+</xng-breadcrumb>

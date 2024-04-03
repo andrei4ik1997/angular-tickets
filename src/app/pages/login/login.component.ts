@@ -19,13 +19,16 @@ export class LoginComponent {
 	private readonly authService = inject(AuthService);
 
 	protected readonly form = this.fb.nonNullable.group({
-		email: ['', Validators.required],
-		password: ['', Validators.required],
+		email: ['admin@admin.com', Validators.required],
+		password: ['adminadmin', Validators.required],
 	});
 
-	protected hide = true;
-
+	protected passwordVisibility = true;
 	protected errorMessage: string | null = null;
+
+	protected changePasswordVisibility(): void {
+		this.passwordVisibility = !this.passwordVisibility;
+	}
 
 	protected onSubmit(): void {
 		this.errorMessage = null;
