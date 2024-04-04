@@ -2,11 +2,17 @@ import {Routes} from '@angular/router';
 
 const profileRoutes: Routes = [
 	{
-		path: ':userID',
-		loadComponent: () => import('./profile.container'),
-		data: {
-			breadcrumb: (userID: string): string => `User ${userID}`,
-		},
+		path: '',
+		loadComponent: () => import('./components/profile-wrapper/profile-wrapper.container'),
+		children: [
+			{
+				path: ':userID',
+				loadComponent: () => import('./components/profile/profile.container'),
+				data: {
+					breadcrumb: (userID: string): string => `User ${userID}`,
+				},
+			},
+		],
 	},
 ];
 

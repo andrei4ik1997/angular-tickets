@@ -2,6 +2,7 @@ import {provideHttpClient} from '@angular/common/http';
 import {ApplicationConfig, ImportProvidersSource, importProvidersFrom, inject, isDevMode} from '@angular/core';
 import {initializeApp, provideFirebaseApp} from '@angular/fire/app';
 import {getAuth, provideAuth} from '@angular/fire/auth';
+import {getDatabase, provideDatabase} from '@angular/fire/database';
 import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 import {
 	IsActiveMatchOptions,
@@ -12,9 +13,13 @@ import {
 	withViewTransitions,
 } from '@angular/router';
 import {provideServiceWorker} from '@angular/service-worker';
+import {provideEffects} from '@ngrx/effects';
+import {provideStore} from '@ngrx/store';
+import {provideStoreDevtools} from '@ngrx/store-devtools';
+import {firebaseConfig} from '@shared';
 import {MODULE_PROVIDERS, SERVICES} from './app.initializers';
 import {APP_ROUTES} from './app.routes';
-import {firebaseConfig} from './shared';
+import {storeConfig} from './store';
 
 const viewTransitionConfig: ViewTransitionsFeatureOptions = {
 	onViewTransitionCreated: (transitionInfo) => {
@@ -38,6 +43,7 @@ const viewTransitionConfig: ViewTransitionsFeatureOptions = {
 const modules: ImportProvidersSource[] = [
 	provideFirebaseApp(() => initializeApp(firebaseConfig)),
 	provideAuth(() => getAuth()),
+	provideDatabase(() => getDatabase()),
 ];
 
 export const appConfig: ApplicationConfig = {
@@ -49,7 +55,11 @@ export const appConfig: ApplicationConfig = {
 			enabled: !isDevMode(),
 			registrationStrategy: 'registerWhenStable:30000',
 		}),
+		provideStore(),
+		provideEffects([]),
+		isDevMode() ? provideStoreDevtools() : [],
 		importProvidersFrom(modules),
+		...storeConfig.providers,
 		...MODULE_PROVIDERS,
 		...SERVICES,
 	],

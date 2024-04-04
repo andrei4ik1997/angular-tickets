@@ -1,0 +1,30 @@
+@use '@angular/material' as mat;
+
+@use 'theme' as tickets-theme;
+
+:host {
+	.mat-toolbar-row {
+		display: flex;
+		justify-content: space-between;
+
+		.links {
+			display: flex;
+			gap: 12px;
+
+			&__link {
+				&:active,
+				&:hover {
+					text-decoration: none;
+					color: white;
+				}
+
+				text-decoration: none;
+				color: white;
+
+				&.active {
+					color: mat.get-theme-color(tickets-theme.$angular-tickets-theme, accent);
+				}
+			}
+		}
+	}
+}

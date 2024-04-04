@@ -1,15 +1,22 @@
 import {inject} from '@angular/core';
 import {CanActivateFn, Router} from '@angular/router';
-import {AuthService} from '../services/auth.service';
-import {PageRoute} from '../shared';
+import {Store} from '@ngrx/store';
+import {AppStore, PageRoute} from '@shared';
+import {authorizationSelectors} from '@store/authorization/selectors';
+import {map} from 'rxjs';
 
-export const authorizationGuard: CanActivateFn = async () => {
-	const authService = inject(AuthService);
+export const authorizationGuard: CanActivateFn = () => {
 	const router = inject(Router);
+	const store = inject<Store<AppStore>>(Store);
 
-	if (authService.isAuthenticated) {
-		return true;
-	}
+	const authCredits$ = store.select(authorizationSelectors.authCredits.data);
 
-	return router.navigateByUrl(PageRoute.Login, {replaceUrl: true});
+	return authCredits$.pipe(
+		map((authCredits) => {
+			if (!authCredits?.uid) {
+				router.navigateByUrl(PageRoute.Login).catch(() => {});
+			}
+			return true;
+		})
+	);
 };

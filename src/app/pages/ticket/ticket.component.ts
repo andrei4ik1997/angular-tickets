@@ -1,4 +1,6 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, computed, input} from '@angular/core';
+import {MatCardModule} from '@angular/material/card';
+import {Ticket} from '../../shared/interfaces';
 
 @Component({
 	selector: 'ticket',
@@ -6,6 +8,11 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 	styleUrl: './ticket.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	standalone: true,
-	imports: [],
+	imports: [MatCardModule],
 })
-export class TicketComponent {}
+export class TicketComponent {
+	public readonly ticketID = input.required();
+	public readonly tickets = input.required<Ticket[]>();
+
+	protected readonly ticket = computed(() => this.tickets().find((ticket) => ticket.id === this.ticketID()));
+}

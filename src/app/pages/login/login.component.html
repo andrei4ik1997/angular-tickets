@@ -20,5 +20,5 @@
 		</button>
 	</mat-form-field>
 
-	<button mat-flat-button color="primary" [disabled]="form.invalid">Sign In</button>
+	<button mat-flat-button color="primary" [disabled]="form.invalid || loginLoadingStatus().loading">Sign In</button>
 </form>

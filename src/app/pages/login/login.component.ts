@@ -1,10 +1,12 @@
-import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, effect, inject, input, output} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
-import {AuthService} from '../../services/auth.service';
+import {Router} from '@angular/router';
+import {LoadingStatus} from '@shared';
+import {DEFAULT_LOGIN, DEFAULT_PASSWORD} from './entities/login.entities';
 
 @Component({
 	selector: 'login',
@@ -16,23 +18,35 @@ import {AuthService} from '../../services/auth.service';
 })
 export class LoginComponent {
 	private readonly fb = inject(FormBuilder);
-	private readonly authService = inject(AuthService);
+	private readonly router = inject(Router);
+
+	public readonly authCredits = input.required<{
+		uid: string;
+	} | null>();
+	public readonly loginLoadingStatus = input.required<LoadingStatus>();
+
+	protected readonly login = output<{email: string; password: string}>();
 
 	protected readonly form = this.fb.nonNullable.group({
-		email: ['admin@admin.com', Validators.required],
-		password: ['adminadmin', Validators.required],
+		email: [DEFAULT_LOGIN, Validators.required],
+		password: [DEFAULT_PASSWORD, Validators.required],
 	});
 
 	protected passwordVisibility = true;
-	protected errorMessage: string | null = null;
+
+	constructor() {
+		effect(() => {
+			if (this.authCredits()?.uid) {
+				this.router.navigateByUrl('').catch(() => {});
+			}
+		});
+	}
 
 	protected changePasswordVisibility(): void {
 		this.passwordVisibility = !this.passwordVisibility;
 	}
 
 	protected onSubmit(): void {
-		this.errorMessage = null;
-
-		this.authService.login(this.form.controls.email.value, this.form.controls.password.value);
+		this.login.emit({email: this.form.controls.email.value, password: this.form.controls.password.value});
 	}
 }

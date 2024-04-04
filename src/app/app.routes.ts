@@ -1,6 +1,6 @@
 import {Routes} from '@angular/router';
-import {authorizationGuard} from './guards';
-import {PageRoute} from './shared';
+import {authorizationGuard, ticketGuard} from '@guards';
+import {PageRoute} from '@shared';
 
 export const APP_ROUTES: Routes = [
 	{
@@ -9,8 +9,7 @@ export const APP_ROUTES: Routes = [
 		children: [
 			{
 				path: '',
-				redirectTo: PageRoute.Tickets,
-				pathMatch: 'full',
+				loadChildren: () => import('./pages/tickets/tickets.routes'),
 				data: {
 					isFullView: true,
 				},
@@ -19,13 +18,24 @@ export const APP_ROUTES: Routes = [
 				path: PageRoute.Profile,
 				loadChildren: () => import('./pages/profile/profile.routes'),
 				title: 'Profile',
-				data: {breadcrumb: 'Profile'},
+				data: {
+					breadcrumb: {
+						label: 'Profile',
+						routeInterceptor: (): string => '',
+					},
+				},
 			},
 			{
-				path: PageRoute.Ticket,
+				path: `${PageRoute.Ticket}`,
 				loadChildren: () => import('./pages/ticket/ticket.routes'),
 				title: 'Ticket',
-				data: {breadcrumb: 'Ticket'},
+				data: {
+					breadcrumb: {
+						label: 'Ticket',
+						routeInterceptor: (): string => PageRoute.Tickets,
+					},
+				},
+				canActivate: [ticketGuard],
 			},
 			{
 				path: PageRoute.Tickets,

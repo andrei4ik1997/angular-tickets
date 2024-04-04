@@ -1,15 +1,13 @@
 :host {
 	display: flex;
 	flex-direction: column;
-	gap: 12px;
 	height: 100%;
 	width: 100%;
-	padding: 16px;
-	box-sizing: border-box;
 
 	&::ng-deep {
 		login-container,
 		not-found-container,
+		profile-wrapper-container,
 		profile-container,
 		ticket-container,
 		tickets-container {
@@ -17,5 +15,14 @@
 			flex-direction: column;
 			flex: 1;
 		}
+	}
+
+	.main {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+		gap: 4px;
+		padding: 16px;
+		box-sizing: border-box;
 	}
 }

@@ -1,3 +1,14 @@
-<breadcrumbs />
+@if (isLoginPage) {
+	<header class="header">
+		<toolbar (logOut)="logOut()" />
+	</header>
+}
 
-<router-outlet />
+<main class="main">
+	@if (isLoginPage) {
+		<breadcrumbs />
+	}
+	<router-outlet />
+</main>
+
+<footer class="footer"></footer>

@@ -9,3 +9,5 @@ export const firebaseConfig: FirebaseOptions = {
 	appId: '1:633344814273:web:ec3335c18064b3bc583840',
 	measurementId: 'G-BD6L2DJYW6',
 };
+
+export const FIREBASE_API_URL = 'https://angular-tickets-24240-default-rtdb.europe-west1.firebasedatabase.app';
