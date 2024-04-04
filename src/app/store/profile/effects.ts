@@ -4,11 +4,10 @@ import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {Store} from '@ngrx/store';
 import {AppStore, PageRoute, mapActionsFn} from '@shared';
 import {authorizationSelectors} from '@store/authorization/selectors';
-import {filter, switchMap, tap, withLatestFrom} from 'rxjs';
+import {switchMap, tap, withLatestFrom} from 'rxjs';
 import {ToastService} from '../../services/toast.service';
 import {profileActions} from './actions';
 import {ProfileApiService} from './api/profile.api.service';
-import {profileSelectors} from './selectors';
 
 @Injectable()
 export class ProfileEffects {
@@ -41,15 +40,9 @@ export class ProfileEffects {
 	private readonly changeCity$ = createEffect(() =>
 		this.actions$.pipe(
 			ofType(profileActions.changeCity.requested),
-			withLatestFrom(
-				this.store.select(authorizationSelectors.authCredits.data),
-				this.store.select(profileSelectors.profile.data)
-			),
-			filter(([, , profile]) => !!profile),
-			switchMap(([action, authCredits, profile]) => {
+			withLatestFrom(this.store.select(authorizationSelectors.authCredits.data)),
+			switchMap(([action, authCredits]) => {
 				const payload = {
-					...profile,
-					birthday: new Date(profile?.birthday ?? '').getTime(),
 					city: action.payload,
 				};
 
