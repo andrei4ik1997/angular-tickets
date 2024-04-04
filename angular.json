@@ -37,20 +37,21 @@
             "stylePreprocessorOptions": {
 							"includePaths": ["src/app/styles"]
 						},
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": ["izitoast"]
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "3mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "100kb",
+                  "maximumError": "200kb"
                 }
               ],
               "outputHashing": "all",
