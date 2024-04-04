@@ -1,0 +1,1 @@
+import"./chunk-SIAVTO45.js";var t=[{path:"",loadComponent:()=>import("./chunk-YRTJROAB.js"),children:[{path:":userID",loadComponent:()=>import("./chunk-5YVLP4WI.js"),data:{breadcrumb:o=>`User ${o}`}}]}],e=t;export{e as default};

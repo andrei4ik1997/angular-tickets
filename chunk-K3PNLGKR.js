@@ -1,0 +1,1 @@
+import{Ja as i}from"./chunk-N4H5RSHY.js";import{p as e,q as a}from"./chunk-HV2KXSGT.js";var o=a(i),r=e(o,t=>t.profile),n=e(o,t=>t.profileLoadingStatus),g=e(o,t=>t.changeCityLoadingStatus),l={profile:{data:r,loadingStatus:n,changeCityLoadingStatus:g}};export{l as a};
