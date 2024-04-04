@@ -1,7 +1,7 @@
 :host {
 	display: flex;
-	flex-direction: column;
 	flex: 1;
+	flex-direction: column;
 
 	table {
 		width: 100%;
@@ -24,8 +24,8 @@
 
 		.ticket {
 			&-detail {
-				overflow: hidden;
 				display: flex;
+				overflow: hidden;
 			}
 
 			&-expand {

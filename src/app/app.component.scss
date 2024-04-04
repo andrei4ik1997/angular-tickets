@@ -12,17 +12,17 @@
 		ticket-container,
 		tickets-container {
 			display: flex;
-			flex-direction: column;
 			flex: 1;
+			flex-direction: column;
 		}
 	}
 
 	.main {
+		box-sizing: border-box;
 		display: flex;
-		flex-direction: column;
 		flex: 1;
+		flex-direction: column;
 		gap: 4px;
 		padding: 16px;
-		box-sizing: border-box;
 	}
 }

@@ -19,11 +19,9 @@
 							aria-label="expand row"
 							(click)="changeExpandedElement($event, element)"
 						>
-							@if (expandedTicket === element) {
-								<mat-icon>keyboard_arrow_up</mat-icon>
-							} @else {
-								<mat-icon>keyboard_arrow_down</mat-icon>
-							}
+							<mat-icon>
+								{{ expandedTicket === element ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}
+							</mat-icon>
 						</button>
 					</td>
 				</ng-container>
@@ -32,7 +30,7 @@
 					<td *matCellDef="let element" mat-cell [attr.colspan]="columnsWithExpand().length">
 						<div
 							class="ticket-detail"
-							[@detailExpand]="element == expandedTicket ? 'expanded' : 'collapsed'"
+							[@detailExpand]="element === expandedTicket ? 'expanded' : 'collapsed'"
 						>
 							<div class="ticket-description">
 								{{ element.description }}

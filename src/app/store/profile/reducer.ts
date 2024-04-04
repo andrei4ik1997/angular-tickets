@@ -29,7 +29,7 @@ const reducer = createReducer(
 		...state,
 		changeCityLoadingStatus: loadingStatus.loading,
 	})),
-	on(profileActions.changeCity.succeeded, (state, action) => ({
+	on(profileActions.changeCity.succeeded, (state) => ({
 		...state,
 		changeCityLoadingStatus: loadingStatus.loaded,
 	})),

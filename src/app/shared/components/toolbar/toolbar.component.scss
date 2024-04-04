@@ -12,14 +12,15 @@
 			gap: 12px;
 
 			&__link {
-				&:active,
-				&:hover {
-					text-decoration: none;
-					color: white;
-				}
+				color: white;
 
 				text-decoration: none;
-				color: white;
+
+				&:active,
+				&:hover {
+					color: white;
+					text-decoration: none;
+				}
 
 				&.active {
 					color: mat.get-theme-color(tickets-theme.$angular-tickets-theme, accent);
