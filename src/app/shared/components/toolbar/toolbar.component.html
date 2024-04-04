@@ -1,0 +1,13 @@
+<mat-toolbar color="primary">
+	<mat-toolbar-row>
+		<nav class="links">
+			<a class="links__link" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+				Main
+			</a>
+			<a class="links__link" routerLinkActive="active" [routerLink]="pageRoute.Tickets">Tickets</a>
+			<a class="links__link" routerLinkActive="active" [routerLink]="pageRoute.Profile">Profile</a>
+		</nav>
+
+		<button mat-button (click)="logOut.emit()">Log out</button>
+	</mat-toolbar-row>
+</mat-toolbar>

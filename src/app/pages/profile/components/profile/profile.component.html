@@ -1,0 +1,24 @@
+@if (!profile()) {
+	<no-data />
+} @else {
+	<mat-card>
+		<mat-card-header>
+			<mat-card-title>{{ profile()?.name }} {{ profile()?.surname }}</mat-card-title>
+			<mat-card-subtitle>{{ profile()?.birthday }}</mat-card-subtitle>
+		</mat-card-header>
+		<mat-card-content>
+			<p>Id: {{ profile()?.id }}</p>
+			<p>Login: {{ profile()?.login }}</p>
+			<p>
+				City:
+				<select required [disabled]="changeCityLoadingStatus().loading" (change)="changeCity($event)">
+					@for (city of cities; track city) {
+						<option [value]="city.value" [selected]="profile()?.city === city.value">
+							{{ city.viewValue }}
+						</option>
+					}
+				</select>
+			</p>
+		</mat-card-content>
+	</mat-card>
+}

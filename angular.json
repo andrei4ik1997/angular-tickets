@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "clearScreen": true,
             "outputPath": "dist/angular-tickets",
             "index": "src/index.html",
             "browser": "src/main.ts",
@@ -33,6 +34,9 @@
             "styles": [
               "src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+							"includePaths": ["src/app/styles"]
+						},
             "scripts": []
           },
           "configurations": {
