@@ -1,8 +1,5 @@
-import {NgFor} from '@angular/common';
 import {ChangeDetectionStrategy, Component, input, output} from '@angular/core';
-import {FormsModule} from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
-import {MatSelectModule} from '@angular/material/select';
 import {LoadingStatus, NoDataComponent, Profile} from '@shared';
 import {CITIES} from './entities/profile.constants';
 
@@ -12,7 +9,7 @@ import {CITIES} from './entities/profile.constants';
 	styleUrl: './profile.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	standalone: true,
-	imports: [MatCardModule, NoDataComponent, FormsModule, MatSelectModule, NgFor],
+	imports: [MatCardModule, NoDataComponent],
 })
 export class ProfileComponent {
 	public readonly profile = input.required<Profile | null>();
