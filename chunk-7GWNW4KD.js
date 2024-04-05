@@ -1,0 +1,1 @@
+import{Fa as e,Ga as i,Ja as t}from"./chunk-HMMVWGZI.js";import{d as o}from"./chunk-UWIVEJDG.js";var a={getProfile:e(t.toUpperCase(),"Get Profile",o()),changeCity:i(t.toUpperCase(),"Change city",o(),o())};export{a};

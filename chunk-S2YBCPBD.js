@@ -1,1 +1,0 @@
-import{Ea as c,Ia as t}from"./chunk-N4H5RSHY.js";import{c as e,d as r,p as i,q as a}from"./chunk-HV2KXSGT.js";var s=o=>c(t.toUpperCase(),o),h={setAuthCredits:e(s("Set auth credits"),r())};var n=a(t),p=i(n,o=>o.authCredits),f={authCredits:{data:p}};export{h as a,f as b};
